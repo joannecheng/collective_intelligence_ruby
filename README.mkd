@@ -1,0 +1,3 @@
+_Programming Collective Intelligence_ examples in Ruby.
+
+Trying to make the examples more readable.
