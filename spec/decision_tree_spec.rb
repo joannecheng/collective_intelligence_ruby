@@ -93,4 +93,39 @@ describe DecisionTree do
     end
   end
 
+  describe '#gini_impurity' do
+    it 'calculates gini impurity (expected error rate)' do
+      d = DecisionTree.new(fixture)
+
+      gini_impurity = d.gini_impurity
+
+      expect(gini_impurity).to eq 0.6328125
+    end
+  end
+
+  describe '#entropy' do
+    it 'calculates entropy, or how mixed a set is' do
+      d = DecisionTree.new(fixture)
+
+      entropy = d.entropy
+
+      expect(entropy).to eq 1.5052408149441479
+    end
+
+    it 'calculates entropy on a sub set of data' do
+      d = DecisionTree.new(fixture)
+      set1, set2 = d.divide_set(2, 'yes')
+
+      entropy = d.entropy(set1)
+
+      expect(entropy).to eq 1.2987949406953985
+    end
+  end
+
+  describe '.build_tree' do
+    it 'returns a tree' do
+
+    end
+  end
+
 end
