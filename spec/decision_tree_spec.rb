@@ -123,7 +123,15 @@ describe DecisionTree do
   end
 
   describe '.build_tree' do
+    it 'returns empty node if length of rows == 0' do
+      rows = []
+      d = DecisionTree.build_tree(rows)
+
+      expect(d.class).to eq EmptyDecisionNode
+    end
+
     it 'returns a tree' do
+      DecisionTree.build_tree(fixture)
 
     end
   end

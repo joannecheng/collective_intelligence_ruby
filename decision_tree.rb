@@ -1,4 +1,48 @@
 class DecisionTree
+
+  def self.build_tree(rows, score_type = 'entropy')
+    if rows.empty?
+      return EmptyDecisionNode.new
+    end
+    d = DecisionTree.new(rows)
+
+    current_score = d.entropy
+
+    best_gain = 0.0
+    best_criteria = nil
+    best_set = nil
+
+    rows[0].length.times do |col|
+      column_values = rows.map do |row|
+        row[col]
+      end
+
+      column_values.each do |column_value|
+        set1, set2 = d.divide_set(col, column_value)
+
+        p = set1.length.to_f/rows.length
+        gain = current_score - p*d.entropy(set1) - (1-p)*d.entropy(set2)
+
+        if gain > best_gain && set1.length > 0 && set2.length > 0
+          best_gain = gain
+          best_criteria = [col, column_value]
+          best_set = [set1, set2]
+        end
+      end
+
+      if best_gain > 0
+        true_branch = build_tree(best_set[0])
+        false_branch = build_tree(best_set[1])
+
+        DecisionNode.new(column_index: best_criteria[0],
+                         value: best_criteria[1], tb: true_branch,
+                         fb: false_branch)
+      else
+        DecisionNode.new(results: d.unique_counts(rows))
+      end
+    end
+  end
+
   def initialize(rows)
     @rows = rows
   end
@@ -53,6 +97,8 @@ class DecisionTree
 end
 
 class DecisionNode
+  attr_reader :column_index, :value, :results, :tb:, :fb
+
   def initialize(options = {})
     @column_index = options[:column_index]
     @value = options[:value]
@@ -60,4 +106,8 @@ class DecisionNode
     @tb = options[:tb]
     @fb = options[:fb]
   end
+end
+
+class EmptyDecisionNode
+
 end
