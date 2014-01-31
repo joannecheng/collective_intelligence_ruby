@@ -132,7 +132,6 @@ describe DecisionTree do
 
     it 'returns a tree' do
       DecisionTree.build_tree(fixture)
-
     end
   end
 
