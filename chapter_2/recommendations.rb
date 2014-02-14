@@ -12,12 +12,22 @@ class CriticComparison
 
   def similarity_score
     # also called 'Euclidian Distance Score'
+    # in this example, the movies act as the axes, and the
+    # critics are placed according to their scores of those
+    # two movies. Distance between two critics is calculated.
+    # Smaller distance = bigger similarity
+    # bigger score = bigger similarity
+    #
     return 0 if shared_movies.empty?
 
     1/(1+sum_of_squares)
   end
 
   def pearson_coefficient
+    # Calculates a linear data fit line
+    # and calculates the distance between the points
+    # and the lines. the closer the points are to the
+    # line the better the relation
     PearsonCoefficientCalculator.new(
       shared_movies,
       critic1_movies,
