@@ -6,6 +6,7 @@ class PearsonCoefficientCalculator
   end
 
   def calculate_coefficient
+    return 0 if shared_movies.empty?
     return 0 if denominator == 0
     numerator/denominator
   end

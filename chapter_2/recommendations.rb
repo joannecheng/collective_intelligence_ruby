@@ -18,8 +18,6 @@ class CriticComparison
   end
 
   def pearson_coefficient
-    return 0 if shared_movies.empty?
-
     PearsonCoefficientCalculator.new(
       shared_movies,
       critic1_movies,
