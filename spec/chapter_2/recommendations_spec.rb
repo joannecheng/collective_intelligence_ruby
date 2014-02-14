@@ -2,27 +2,40 @@
 require_relative '../../chapter_2/recommendations'
 require 'rspec'
 
-describe CriticComparison do
-  describe '#similarity_score' do
-    it 'returns 0 if reviewers do not share any movies' do
-      critic1 = {'movie1' => 2}
-      critic2 = {'unmatching_movie' => 2}
+describe 'Recommendations' do
+  describe CriticComparison do
+    describe '#similarity_score' do
+      it 'returns 0 if reviewers do not share any movies' do
+        critic1 = {'movie1' => 2}
+        critic2 = {'unmatching_movie' => 2}
 
-      similarity_score = CriticComparison.new(
-        critic1,
-        critic2
-      ).similarity_score
+        similarity_score = CriticComparison.new(
+          critic1,
+          critic2
+        ).similarity_score
 
-      expect(similarity_score).to eq 0
+        expect(similarity_score).to eq 0
+      end
+
+      it 'returns similarity score of two reviewers if they share movies' do
+        similarity_score = CriticComparison.new(
+          critics['Lisa Rose'],
+          critics['Gene Seymour']
+        ).similarity_score
+
+        expect(similarity_score).to eq 0.14814814814814814
+      end
     end
 
-    it 'returns similarity score of two reviewers if they share movies' do
-      similarity_score = CriticComparison.new(
-        critics['Lisa Rose'],
-        critics['Gene Seymour']
-      ).similarity_score
+    describe '#pearson_coefficient' do
+      it 'calculates pearson coeff of common movies' do
+        pearson_coefficient = CriticComparison.new(
+          critics['Lisa Rose'],
+          critics['Gene Seymour']
+        ).pearson_coefficient
 
-      expect(similarity_score).to eq 0.14814814814814814
+        expect(pearson_coefficient).to eq 0.39605901719066977
+      end
     end
   end
 
