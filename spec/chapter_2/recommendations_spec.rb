@@ -2,14 +2,13 @@
 require_relative '../../chapter_2/recommendations'
 require 'rspec'
 
-describe CriticsDistance do
-
-  describe '#distance' do
+describe CriticComparison do
+  describe '#similarity_score' do
     it 'returns 0 if reviewers do not share any movies' do
       critic1 = {'movie1' => 2}
       critic2 = {'unmatching_movie' => 2}
 
-      similarity_score = CriticsDistance.new(
+      similarity_score = CriticComparison.new(
         critic1,
         critic2
       ).similarity_score
@@ -18,7 +17,7 @@ describe CriticsDistance do
     end
 
     it 'returns similarity score of two reviewers if they share movies' do
-      similarity_score = CriticsDistance.new(
+      similarity_score = CriticComparison.new(
         critics['Lisa Rose'],
         critics['Gene Seymour']
       ).similarity_score

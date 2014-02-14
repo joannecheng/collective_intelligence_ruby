@@ -7,7 +7,7 @@ class SpearmanCorrelation
 
 end
 
-class CriticsDistance
+class CriticComparison
   def initialize(critic1_movies, critic2_movies)
     @critic1_movies = critic1_movies
     @critic2_movies = critic2_movies
