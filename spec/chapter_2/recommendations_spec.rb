@@ -37,6 +37,19 @@ describe 'Recommendations' do
         expect(pearson_coefficient).to eq 0.39605901719066977
       end
     end
+
+    describe '#similarity_ranking' do
+      it 'orders the other critics by similarity score' do
+        pearson_similarity_ranking = CriticComparison.
+          pearson_similarity_ranking(critics, 'Toby')
+
+        expect(pearson_similarity_ranking[0..2]).to eq(
+          [[0.99124070716192991, 'Lisa Rose'],
+           [0.92447345164190486, 'Mick LaSalle'],
+           [0.89340514744156474, 'Claudia Puig']]
+        )
+      end
+    end
   end
 
   def critics

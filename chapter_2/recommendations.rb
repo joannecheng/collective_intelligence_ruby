@@ -5,6 +5,15 @@
 require_relative 'pearson_coefficient'
 
 class CriticComparison
+  def self.pearson_similarity_ranking(critics, critic_name)
+    ranking_list = critics.map do |current_critic_name, current_critic_movies|
+      next if current_critic_name == critic_name
+      [CriticComparison.new(critics[critic_name], current_critic_movies).
+        pearson_coefficient, current_critic_name]
+    end.compact
+    ranking_list.sort.reverse
+  end
+
   def initialize(critic1_movies, critic2_movies)
     @critic1_movies = critic1_movies
     @critic2_movies = critic2_movies
@@ -34,6 +43,7 @@ class CriticComparison
       critic2_movies
     ).calculate_coefficient
   end
+
 
   private
   attr_reader :critic1_movies, :critic2_movies
