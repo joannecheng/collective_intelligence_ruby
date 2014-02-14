@@ -1,3 +1,1 @@
-_Programming Collective Intelligence_ examples in Ruby.
-
-Test driven to try to learn concepts.
+[_Programming Collective Intelligence_](http://shop.oreilly.com/product/9780596529321.do) examples in Ruby.
