@@ -1,5 +1,5 @@
 # Chapter 2, Making Recommendations
-require_relative '../../correlations/recommendations'
+require_relative '../../chapter_2/recommendations'
 require 'rspec'
 
 describe CriticsDistance do
