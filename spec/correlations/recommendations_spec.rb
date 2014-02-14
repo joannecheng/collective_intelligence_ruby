@@ -1,3 +1,4 @@
+# Chapter 2, Making Recommendations
 require_relative '../../correlations/recommendations'
 require 'rspec'
 

@@ -1,3 +1,4 @@
+# Chapter 2, making recommendations
 class PearsonCorrelation
 
 end
