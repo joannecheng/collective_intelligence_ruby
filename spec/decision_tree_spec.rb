@@ -1,5 +1,4 @@
-require_relative '../decision_tree'
-require 'rspec'
+require_relative '../decision_trees/decision_tree'
 
 fixture = [['slashdot','USA','yes',18,'None'],
              ['google','France','yes',23,'Premium'],
