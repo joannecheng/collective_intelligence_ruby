@@ -44,9 +44,11 @@ describe 'Recommendations' do
           pearson_similarity_ranking(critics, 'Toby')
 
         expect(pearson_similarity_ranking[0..2]).to eq(
-          [[0.99124070716192991, 'Lisa Rose'],
-           [0.92447345164190486, 'Mick LaSalle'],
-           [0.89340514744156474, 'Claudia Puig']]
+          [
+            [0.99124070716192991, 'Lisa Rose'],
+            [0.92447345164190486, 'Mick LaSalle'],
+            [0.89340514744156474, 'Claudia Puig']
+          ]
         )
       end
     end
